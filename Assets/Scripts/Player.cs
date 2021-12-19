@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] int _playerNumber;
-    Controller _controller;
+
+    public Controller Controller { get; private set; }
     UIPlayerText _uiPlayerText;
 
-    public bool HasController { get { return _controller != null; } }
+    public bool HasController { get { return Controller != null; } }
     public int PlayerNumber { get { return _playerNumber; } }
 
     private void Awake()
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 
     public void InitializePlayer(Controller controller)
     {
-        _controller = controller;
+        Controller = controller;
 
         gameObject.name = string.Format("Player {0} - {1}", PlayerNumber, controller.gameObject.name);
 

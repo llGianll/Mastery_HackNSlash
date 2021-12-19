@@ -32,11 +32,25 @@ public class UICharacterSelectionMarker : MonoBehaviour
             return;
 
         //Check for player controls and selection + locking character
+        if (_player.Controller.horizontal > 0.5f)
+        {
+            MoveToCharacterPanel(_menu.RightPanel);
+        }
+        else if(_player.Controller.horizontal < -0.5f)
+        {
+            MoveToCharacterPanel(_menu.LeftPanel);
+        }
+    }
+
+    private void MoveToCharacterPanel(UICharacterSelectionPanel panel)
+    {
+        transform.position = panel.transform.position;
     }
 
     private IEnumerator Initialize()
     {
         _initializing = true;
+        MoveToCharacterPanel(_menu.LeftPanel);
         yield return new WaitForSeconds(0.5f);
         _markerImage.gameObject.SetActive(true);
         _initialized = true;
