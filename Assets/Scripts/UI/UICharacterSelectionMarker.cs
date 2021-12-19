@@ -49,7 +49,14 @@ public class UICharacterSelectionMarker : MonoBehaviour
             if (_player.Controller.attackPressed)
             {
                 LockCharacter();
-            } 
+            }
+        }
+        else
+        {
+            if (_player.Controller.attackPressed)
+            {
+                _menu.TryStartGame();
+            }
         }
     }
 
@@ -57,7 +64,6 @@ public class UICharacterSelectionMarker : MonoBehaviour
     {
         IsLockedIn = true;
         _lockImage.gameObject.SetActive(true);
-        //_markerImage.gameObject.SetActive(false);
     }
 
     private void MoveToCharacterPanel(UICharacterSelectionPanel panel)
