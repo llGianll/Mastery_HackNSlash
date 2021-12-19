@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    //Each Controller gameobject is attached to the Input Setting Axis through the _attackButton string
     string _attackButton;
     public bool _attack;
 
