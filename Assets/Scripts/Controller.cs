@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour
     public float horizontal;
     public float vertical;
 
-    private bool _attackPressed;
+    public bool attackPressed;
 
     public int Index { get; private set; }
     public bool IsAssigned { get; set; }
@@ -24,7 +24,7 @@ public class Controller : MonoBehaviour
         if (!string.IsNullOrEmpty(_attackButton))
         {
             attack = Input.GetButton(_attackButton);
-            _attackPressed = Input.GetButtonDown(_attackButton);
+            attackPressed = Input.GetButtonDown(_attackButton);
             horizontal = Input.GetAxis(_horizontalAxis);
             vertical = Input.GetAxis(_verticalAxis);
         }
