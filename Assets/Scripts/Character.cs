@@ -15,6 +15,25 @@ public class Character : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _attackResults = new Collider[10];
+
+        var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
+        animationImpactWatcher.OnImpact += AnimationImpactWatcher_OnImpact;
+    }
+    /// <summary>
+    /// Called by animation event via AnimationImpactWatcher
+    /// </summary>
+    private void AnimationImpactWatcher_OnImpact()
+    {
+        Vector3 position = transform.position + transform.forward * _attackOffset;
+        int hitCount = Physics.OverlapSphereNonAlloc(position, _attackRadius, _attackResults);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            var box = _attackResults[i].GetComponent<Box>();
+
+            if (box != null)
+                box.TakeHit(this);
+        }
     }
 
     public void SetController(Controller controller)
@@ -39,22 +58,7 @@ public class Character : MonoBehaviour
 
         if (_controller.attackPressed)
         {
-            Attack();
-        }
-    }
-
-    private void Attack()
-    {
-        _animator.SetTrigger("Attack");
-        Vector3 position = transform.position + transform.forward * _attackOffset;
-        int hitCount = Physics.OverlapSphereNonAlloc(position, _attackRadius, _attackResults);
-
-        for (int i = 0; i < hitCount; i++)
-        {
-            var box = _attackResults[i].GetComponent<Box>();
-
-            if (box != null)
-                box.TakeHit(this);
+            _animator.SetTrigger("Attack");
         }
     }
 }
