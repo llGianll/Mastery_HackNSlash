@@ -48,7 +48,7 @@ public class UICharacterSelectionMarker : MonoBehaviour
 
             if (_player.Controller.attackPressed)
             {
-                LockCharacter();
+                StartCoroutine(LockCharacter());
             }
         }
         else
@@ -60,10 +60,14 @@ public class UICharacterSelectionMarker : MonoBehaviour
         }
     }
 
-    private void LockCharacter()
+    private IEnumerator LockCharacter()
     {
-        IsLockedIn = true;
         _lockImage.gameObject.SetActive(true);
+
+        //delay to avoid double-tap 
+        yield return new WaitForSeconds(0.2f);
+        
+        IsLockedIn = true;
     }
 
     private void MoveToCharacterPanel(UICharacterSelectionPanel panel)
