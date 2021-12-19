@@ -30,5 +30,10 @@ public class Character : MonoBehaviour
         {
             _animator.SetFloat("Speed", 0);
         }
+
+        if (_controller.attackPressed)
+        {
+            _animator.SetTrigger("Attack");
+        }
     }
 }
