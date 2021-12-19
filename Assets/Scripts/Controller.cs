@@ -45,4 +45,9 @@ public class Controller : MonoBehaviour
     {
         return attack;
     }
+
+    public Vector3 GetDirection()
+    {
+        return new Vector3(horizontal, 0, vertical);
+    }
 }
