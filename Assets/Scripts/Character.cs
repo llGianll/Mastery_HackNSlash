@@ -4,6 +4,12 @@ public class Character : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     Controller _controller;
+    Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
 
     public void SetController(Controller controller)
     {
@@ -18,6 +24,11 @@ public class Character : MonoBehaviour
         {
             transform.position += direction * Time.deltaTime * moveSpeed;
             transform.forward = direction * 360f;
+            _animator.SetFloat("Speed", direction.magnitude);
+        }
+        else
+        {
+            _animator.SetFloat("Speed", 0);
         }
     }
 }
