@@ -48,6 +48,6 @@ public class Controller : MonoBehaviour
 
     public Vector3 GetDirection()
     {
-        return new Vector3(horizontal, 0, vertical);
+        return new Vector3(horizontal, 0, -vertical);
     }
 }
