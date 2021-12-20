@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -5,6 +6,8 @@ public class Character : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float _attackOffset = 1f;
     [SerializeField] float _attackRadius = 1f;
+
+    public static List<Character> All = new List<Character>();
 
     Controller _controller;
     Animator _animator;
@@ -60,5 +63,17 @@ public class Character : MonoBehaviour
         {
             _animator.SetTrigger("Attack");
         }
+    }
+
+    private void OnEnable()
+    {
+        if (All.Contains(this) == false)
+            All.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        if (All.Contains(this))
+            All.Remove(this);
     }
 }
