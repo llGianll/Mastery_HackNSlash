@@ -92,4 +92,18 @@ public class EnemySpawner : MonoBehaviour
 
         return _enemyPrefabs[index];
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, Vector3.one);
+
+        foreach (var spawnPoint in _spawnPoints)
+        {
+            Gizmos.DrawWireSphere(spawnPoint.position, 0.5f);
+        }
+    }
+#endif
+
 }
