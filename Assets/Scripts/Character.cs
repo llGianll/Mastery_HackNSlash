@@ -29,10 +29,10 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++)
         {
-            var box = _attackResults[i].GetComponent<Box>();
+            var takeHit = _attackResults[i].GetComponent<ITakeHit>();
 
-            if (box != null)
-                box.TakeHit(this);
+            if (takeHit != null)
+                takeHit.TakeHit(this);
         }
     }
 

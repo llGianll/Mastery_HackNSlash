@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : MonoBehaviour, ITakeHit
 {
     Rigidbody _rigidbody;
     [SerializeField] float forceAmount = 10f;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();    
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public void TakeHit(Character hitBy)
